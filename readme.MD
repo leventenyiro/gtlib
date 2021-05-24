@@ -6,5 +6,8 @@ Fájlban összeadni a számokat
 ## 2. feladat
 Faktoriális kiszámolása
 
+## 3. feladat
+Inputból outputba a páros számokat
+
 ## 5. feladat
 Összessített átlag alapján megtalálni a legjobb tanulót
