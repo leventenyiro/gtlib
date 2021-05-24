@@ -9,5 +9,8 @@ Faktoriális kiszámolása
 ## 3. feladat
 Inputból outputba a páros számokat
 
+## 4. feladat
+Az első, ami ismétlődik
+
 ## 5. feladat
 Összessített átlag alapján megtalálni a legjobb tanulót
