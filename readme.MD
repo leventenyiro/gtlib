@@ -14,3 +14,6 @@ Az első, ami ismétlődik
 
 ## 5. feladat
 Összessített átlag alapján megtalálni a legjobb tanulót
+
+## 6. feladat
+Összessíteni a tárgyak átlagából a tanuló átlagát majd kiválasztani a legjobb tanulót

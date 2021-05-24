@@ -55,6 +55,7 @@ istream &operator>>(istream &is, Student &st) {
 
 // maximumkeresés átlag alapján
 class BestStudent : public MaxSearch<Student, double, Greater<double>> {
+protected:
     virtual double func(const Student& e) const override {
         return e.avg;
     };
