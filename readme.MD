@@ -17,3 +17,6 @@ Az első, ami ismétlődik
 
 ## 6. feladat
 Összessíteni a tárgyak átlagából a tanuló átlagát majd kiválasztani a legjobb tanulót
+
+## 7. feladat
+Doctor Who
