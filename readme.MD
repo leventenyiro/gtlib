@@ -20,3 +20,6 @@ Az első, ami ismétlődik
 
 ## 7. feladat
 Doctor Who
+
+## 8. feladat
+Meccsek
