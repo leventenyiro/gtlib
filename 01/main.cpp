@@ -7,21 +7,21 @@
 using namespace std;
 
 class MySum : public Summation<int> {
-    virtual int func(const int& e) const override {
+     int func(const int& e) const override {
         return e;
     }
 
-    virtual int neutral() const override {
+     int neutral() const override {
         return 0;
     }
 
-    virtual int add( const int& a, const int& b) const override {
+     int add( const int& a, const int& b) const override {
         return a + b;
     }
 };
 
 class MyMaxSearch : public MaxSearch<int, int, Greater<int>> {
-    virtual int func(const int& e) const override {
+     int func(const int& e) const override {
         return e;
     }
 };
@@ -32,10 +32,16 @@ int main(int argc, char const *argv[])
 
     SeqInFileEnumerator<int> enor(filename);
 
-    MyMaxSearch max;
+    /*MyMaxSearch max;
     max.addEnumerator(&enor);
     max.run();
-    cout << "Sum: " << max.optElem() << endl;
+    cout << "Sum: " << max.optElem() << endl;*/
+
+    MySum pr;
+    pr.addEnumerator(&enor);
+    pr.run();
+    
+    cout << "Sum: " << pr.result() << endl;
     
     return 0;
 }
