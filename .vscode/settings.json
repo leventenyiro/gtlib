@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "typeinfo": "cpp",
-        "iosfwd": "cpp",
-        "limits": "cpp"
-    }
-}

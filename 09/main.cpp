@@ -19,25 +19,25 @@ istream &operator>>(istream &is, Record &e) {
 
 struct Weather {
     string city;
-    int avgWet, avgTemp;
+    int avgWet;
 };
 
 struct AvgWeather {
-    int sumWet, sumTemp, count;
+    int sumWet, count;
 };
 
 class Avg : public Summation<Record, AvgWeather> {
 protected:
     virtual AvgWeather func(const Record& e) const override {
-        return {e.wet, e.temp, 1};
+        return {e.wet, 1};
     }
     
     virtual AvgWeather neutral() const override {
-        return {0, 0, 0};
+        return {0, 0};
     }
     
     virtual AvgWeather add( const AvgWeather& a, const AvgWeather& b) const override {
-        return {a.sumWet + b.sumWet, a.sumTemp + b.sumTemp, a.count + b.count};
+        return {a.sumWet + b.sumWet, a.count + b.count};
     }
     
 };
@@ -57,7 +57,6 @@ istream &operator>>(istream &is, Weather &e) {
         pr.run();
 
         e.avgWet = pr.result().sumWet / pr.result().count;
-        e.avgTemp = pr.result().sumTemp / pr.result().count;
     }
     return is;
 }
