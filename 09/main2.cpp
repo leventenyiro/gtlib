@@ -37,7 +37,7 @@ istream &operator>>(istream &is, Weather &e) {
     if (getline(is, line)) {
         stringstream ss(line);
 
-        ss >> e.city;
+        ss >> e.city >> e.institution;
 
         // rekordokból átlagszámítás
         StringStreamEnumerator<Record> enor(ss);
@@ -56,7 +56,7 @@ istream &operator>>(istream &is, Weather &e) {
 
 struct Hottest {
     string city;
-    bool reachedTemp40;
+    bool goodTemp;
 };
 
 class ReachedTemp40 : public Summation<Weather, bool> {
@@ -68,7 +68,7 @@ public:
 
 protected:
     virtual bool func(const Weather& e) const override {
-        return e.maxTemp >= 40;
+        return e.maxTemp < 40;
     }
 
     virtual bool neutral() const override {
@@ -107,7 +107,7 @@ protected:
             pr.addEnumerator(&_enor);
             pr.run();
 
-            _current.reachedTemp40 = pr.result();
+            _current.goodTemp = pr.result();
         }
     }
 
@@ -120,14 +120,10 @@ protected:
     }
 };
 
-/*class GoodWeatherList : public Summation<Hottest, ostream> {
-public:
-    GoodWeatherList(ostream *f) : Summation<Hottest, ostream>(f) {}
-
+class GoodWeatherList : public Summation<Hottest, string> {
 protected:
     virtual string func(const Hottest& e) const override {
-        //return e.city + ", ";
-        cout << e.city << " ";
+        return e.city + " ";
     }
 
     virtual string neutral() const override {
@@ -139,14 +135,7 @@ protected:
     }
 
     virtual bool cond(const Hottest& e) const override {
-        return !e.reachedTemp40;
-    }
-};*/
-
-// Inkább megszámolom, mert fentit nem tanultuk
-class GoodWeatherCount : public Counting<Hottest> {
-    virtual bool cond(const Hottest& e) const override {
-        return !e.reachedTemp40;
+        return e.goodTemp;
     }
 };
 
@@ -155,14 +144,14 @@ int main(int argc, char const *argv[])
     string filename = "input2.txt";
     WeatherEnor enor(filename);
 
-    GoodWeatherCount pr;
+    GoodWeatherList pr;
     pr.addEnumerator(&enor);
     pr.run();
 
-    //cout << "Ezekben a varosokban nem haladta meg a homerseklet a 40 C-ot: " << pr.result() << endl;
-
-    cout << pr.result() << endl;
-    
+    if (pr.result().length() != 0)
+        cout << "Ezekben a varosokban nem haladta meg a homerseklet a 40 C-ot: " << pr.result() << endl;
+    else
+        cout << "Nincs olyan város, ahol a hőmérséklet ne haladná meg a 40 C-ot" << endl;
     
     return 0;
 }
